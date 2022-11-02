@@ -16,6 +16,7 @@ export class PaymentResolver {
     })
     createSessionInput: CreateSessionInput[],
   ) {
+    console.log('createSessionInput', createSessionInput);
     return this.paymentService.createCheckoutSession(createSessionInput);
   }
 }

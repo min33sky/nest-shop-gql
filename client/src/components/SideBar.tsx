@@ -1,9 +1,36 @@
+import { createCheckOut } from '@/api';
 import useCart from '@/store/useCart';
 import { XCircleIcon } from '@heroicons/react/24/outline';
+import { useMutation } from '@tanstack/react-query';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 export default function SideBar() {
+  const router = useRouter();
+
   const { cartOpen, closeCart, productsInCart, total } = useCart();
+  const { mutate } = useMutation(createCheckOut, {
+    onSuccess: (data) => {
+      console.log('성공', data);
+      router.push(data.createCheckoutSession.url);
+    },
+    onError: (error) => {
+      console.log('실패: ', error);
+    },
+  });
+
+  const itemsForStripe = productsInCart.map((product) => ({
+    id: product.id,
+    quantity: product.quantity,
+  }));
+
+  const handleCheckout = () => {
+    console.log('결제 시작......');
+    console.log('itemsForStripe: ', itemsForStripe);
+    mutate({
+      items: itemsForStripe,
+    });
+  };
 
   return (
     <div
@@ -32,7 +59,10 @@ export default function SideBar() {
         <p>총 가격: ${total}</p>
       </div>
 
-      <button className="bg-slate-800 py-2 text-center text-slate-200">
+      <button
+        onClick={handleCheckout}
+        className="bg-slate-800 py-2 text-center text-slate-200"
+      >
         구매
       </button>
     </div>

@@ -1,3 +1,4 @@
+import { createCheckoutSession } from '@/graphql/createCheckoutSession';
 import { getProductById as getProduct } from '@/graphql/getProductById.query';
 import { getProducts } from '@/graphql/getProducts.query';
 import { Product } from '@/graphql/types';
@@ -16,6 +17,18 @@ export async function getAllProducts() {
 
 export async function getProductById(id: number) {
   const result = await client.request<ProductResponse>(getProduct, { id });
+  return result;
+}
+
+export async function createCheckOut({
+  items,
+}: {
+  items: {
+    id: number;
+    quantity: number;
+  }[];
+}) {
+  const result = await client.request(createCheckoutSession, { items });
   return result;
 }
 

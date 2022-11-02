@@ -5,4 +5,5 @@ export const createCheckoutSession = gql`
     createCheckoutSession(items: $items) {
       url
     }
+  }
 `;
