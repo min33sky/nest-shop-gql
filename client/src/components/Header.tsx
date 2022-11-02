@@ -1,5 +1,6 @@
 import useCart from '@/store/useCart';
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
 
 export default function Header() {
   const { cartOpen, openCart, closeCart, productsInCart } = useCart();
@@ -15,9 +16,9 @@ export default function Header() {
   return (
     <header className="bg-slate-700 py-3 text-white">
       <nav className="mx-auto flex w-full max-w-3xl items-center justify-between">
-        <div className="text-lg font-bold">Logo</div>
-
-        <div>{cartOpen ? '열림' : '닫히미'}</div>
+        <div className="text-lg font-bold">
+          <Link href={'/'}>Shop</Link>{' '}
+        </div>
 
         <div>
           <button

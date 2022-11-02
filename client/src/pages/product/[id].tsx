@@ -23,7 +23,8 @@ export default function ProductDetails() {
     return '';
   }
 
-  const inCart = productsInCart.find(
+  // 현 상품이 장바구니에 담겨있는지 확인
+  const cartItems = productsInCart.find(
     (product) => product.id === data.product.id,
   );
 
@@ -39,6 +40,20 @@ export default function ProductDetails() {
       <h1 className="text-2xl font-bold">{name}</h1>
       <p>${price}</p>
       <p>{description}</p>
+      <p>장바구니에 담은 현재 상품 개수 : {cartItems?.quantity ?? 0}</p>
+
+      {cartItems && cartItems.quantity > 0 ? (
+        <div className="flex space-x-2">
+          <button onClick={() => removeProductFromCart(data.product)}>
+            -1
+          </button>
+          <button onClick={() => addProductToCart(data.product)}>+1</button>
+        </div>
+      ) : (
+        <button onClick={() => addProductToCart(data.product)}>
+          장바구니에 담기
+        </button>
+      )}
     </div>
   );
 }
