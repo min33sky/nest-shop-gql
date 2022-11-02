@@ -1,3 +1,4 @@
+import { getProductById as getProduct } from '@/graphql/getProductById.query';
 import { getProducts } from '@/graphql/getProducts.query';
 import { Product } from '@/graphql/types';
 import { GraphQLClient } from 'graphql-request';
@@ -13,6 +14,15 @@ export async function getAllProducts() {
   return result;
 }
 
+export async function getProductById(id: number) {
+  const result = await client.request<ProductResponse>(getProduct, { id });
+  return result;
+}
+
 interface ProductsResponse {
   products: Product[];
+}
+
+interface ProductResponse {
+  product: Product;
 }

@@ -13,11 +13,6 @@ export type Scalars = {
   DateTime: any;
 };
 
-export type CreateProductInput = {
-  /** Example field (placeholder) */
-  exampleField: Scalars['Int'];
-};
-
 export type CreateSessionInput = {
   id: Scalars['Int'];
   quantity: Scalars['Int'];
@@ -31,29 +26,11 @@ export type CreateSessionResponse = {
 export type Mutation = {
   __typename?: 'Mutation';
   createCheckoutSession: CreateSessionResponse;
-  createProduct: Product;
-  removeProduct: Product;
-  updateProduct: Product;
 };
 
 
 export type MutationCreateCheckoutSessionArgs = {
   items: Array<CreateSessionInput>;
-};
-
-
-export type MutationCreateProductArgs = {
-  createProductInput: CreateProductInput;
-};
-
-
-export type MutationRemoveProductArgs = {
-  id: Scalars['Int'];
-};
-
-
-export type MutationUpdateProductArgs = {
-  updateProductInput: UpdateProductInput;
 };
 
 export type Product = {
@@ -79,11 +56,12 @@ export type QueryProductArgs = {
   id: Scalars['Int'];
 };
 
-export type UpdateProductInput = {
-  /** Example field (placeholder) */
-  exampleField?: InputMaybe<Scalars['Int']>;
+export type GetProductByIdQueryVariables = Exact<{
   id: Scalars['Int'];
-};
+}>;
+
+
+export type GetProductByIdQuery = { __typename?: 'Query', product: { __typename?: 'Product', id: number, name: string, description: string, price: number, image: string, createdAt: any, updatedAt: any } };
 
 export type GetProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
