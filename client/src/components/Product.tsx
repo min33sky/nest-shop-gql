@@ -7,15 +7,9 @@ interface Props extends ProductType {}
 
 export default function Product({ id, name, price, image }: Props) {
   return (
-    <article>
+    <article className="relative h-80 w-80">
       <Link href={`/product/${id}`}>
-        <Image
-          src={image}
-          alt={name}
-          width={300}
-          height={300}
-          objectFit="contain"
-        />
+        <Image src={image} alt={name} fill={true} className="object-cover" />
       </Link>
     </article>
   );

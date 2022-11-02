@@ -15,7 +15,7 @@ export default function Layout({ children }: Props) {
         <title>CustomShop</title>
       </Head>
       <Header />
-      <main className="flex flex-1 flex-col">{children}</main>
+      <main className="flex flex-1 flex-col overflow-y-scroll">{children}</main>
       <SideBar />
       <Footer />
     </div>
