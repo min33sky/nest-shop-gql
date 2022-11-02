@@ -2,11 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-input CreateProductInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
 input CreateSessionInput {
   id: Int!
   quantity: Int!
@@ -23,9 +18,6 @@ scalar DateTime
 
 type Mutation {
   createCheckoutSession(items: [CreateSessionInput!]!): CreateSessionResponse!
-  createProduct(createProductInput: CreateProductInput!): Product!
-  removeProduct(id: Int!): Product!
-  updateProduct(updateProductInput: UpdateProductInput!): Product!
 }
 
 type Product {
@@ -42,10 +34,4 @@ type Product {
 type Query {
   product(id: Int!): Product!
   products: [Product!]!
-}
-
-input UpdateProductInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
 }

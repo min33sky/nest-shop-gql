@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Mutation, Args } from '@nestjs/graphql';
 import { PaymentService } from './payment.service';
 import { Payment } from './entities/payment.entity';
 import { CreateSessionInput } from './dto/create-session.input';
