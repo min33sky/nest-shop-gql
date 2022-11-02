@@ -7,9 +7,13 @@ interface CartState {
   productsInCart: ProductWithQuantity[];
   total: number;
   cartOpen: boolean;
+  addProductToCart: (product: Product) => void;
+  removeProductFromCart: (product: Product) => void;
+  openCart: () => void;
+  closeCart: () => void;
 }
 
-export const useCart = create<CartState>((set) => ({
+const useCart = create<CartState>((set) => ({
   productsInCart: [],
   total: 0, // total price of all items in cart
   cartOpen: false,
@@ -65,3 +69,5 @@ export const useCart = create<CartState>((set) => ({
     set((state) => ({ ...state, cartOpen: false }));
   },
 }));
+
+export default useCart;
